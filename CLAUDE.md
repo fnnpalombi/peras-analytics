@@ -15,10 +15,12 @@ exposed unsafely. Everything is built around a **two-tier** model — private ra
 public aggregated/cleared.
 
 ## Current state
-- Repo scaffolded; `notebooks/01_extract.ipynb` (reproducible PostHog HogQL pull) is built.
-- **Next up:** `02_clean_audit.ipynb` — dedupe, nulls/types, bot/internal traffic,
-  session definition, and a short data-quality report.
-- Not started: `03_eda.ipynb`, Tableau dashboards, findings memo.
+- All three notebooks built and working: `01_extract.ipynb` (batched HogQL pull,
+  explicit `LIMIT`s), `02_clean_audit.ipynb` (dedupe, bot/traffic filtering, session
+  definition, data-quality report), `03_eda.ipynb` (acquisition, signup, activation,
+  engagement, retention, experiments, small-cell-suppressed aggregated output).
+- Repo is public on GitHub with Peras's written clearance. First commit pushed.
+- **Next up:** Tableau dashboards on `data/aggregated/`, then `reports/findings_memo.md`.
 
 ## Non-negotiable safety rules (do not violate)
 - **Never commit `data/raw/`, `.env`, or any user-level data.** These are gitignored;
@@ -32,6 +34,41 @@ public aggregated/cleared.
   public artifact — show trends/indexed values, not Peras's real figures.
 - **Nothing goes public without written clearance from Peras.** Repo stays private
   until then; Tableau Public is public by default, so treat it accordingly.
+
+## Pre-commit safety checklist (run every time, before every commit)
+
+Gitignore protects data *files* — it does not protect notebook *outputs*. A `.ipynb`
+is committed with every saved cell output embedded as JSON, so anything printed or
+displayed in a notebook is subject to the same public-safety bar as
+`data/aggregated/`, even though the notebook file itself isn't gitignored. Found and
+fixed real instances of every issue below in this repo's own history — this isn't
+hypothetical.
+
+1. **Dump every saved output in every notebook, not just the last displayed
+   expression.** A cell can have several `print()`/`display()` calls; only checking
+   the final auto-rendered output misses earlier ones. Look for raw person-level
+   values (`person_id`, `distinct_id`, `account_id`, URLs, timestamps tied to an
+   individual) — not just property *names*, actual *values*.
+2. **Small-cell suppression must gate every printed count or rate, not just
+   tables.** It's not enough to suppress a distribution/table — a narrative
+   "headline" print (e.g. `f"Activated: {n} of {total} people"`) placed *before* the
+   threshold check leaks the exact small count regardless of what happens below it.
+3. **A "suppressed" fallback message must never contain the exact small count.**
+   `"Only 3 people activated"` defeats the point — say `"Fewer than 5 people
+   activated"` instead, with no number in it at all.
+4. **Treat 0 as always safe to show; treat 1 through (threshold − 1) as always
+   hidden, in any form.** This includes rates: a rate computed from a known
+   denominator and a small numerator (e.g. "2.6% of 116 activated") can be
+   back-calculated to reveal the exact small count, so gate the numerator's size,
+   not just whether the rate itself "looks fine."
+5. **Confirm `data/aggregated/*.csv` and `reports/*.md` were regenerated from the
+   current, correct run before committing.** Stale outputs from an earlier or
+   buggy pipeline run (wrong event definitions, an unfixed extraction bug, a
+   partial re-run) are a real trust problem for a public repo, not just cosmetic —
+   check the numbers match what the notebook just produced, not an old cached run.
+6. **Run `git add -A --dry-run` (or `git status`) and read the file list before
+   staging anything.** Confirm `.env` and everything under `data/raw/` are absent.
+   Don't assume `.gitignore` is doing its job — check it every time.
 
 ## Toolchain (agreed decisions)
 - **Extraction:** PostHog Query API (HogQL) called from Python — reproducible, not

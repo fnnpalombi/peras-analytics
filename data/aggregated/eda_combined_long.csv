@@ -1,0 +1,39 @@
+analysis,dimension,metric,value
+retention,2026-06-15 00:00:00-05:00 / 0,active_people,50.0
+retention,2026-06-22 00:00:00-05:00 / 0,active_people,628.0
+retention,2026-06-22 00:00:00-05:00 / 1,active_people,37.0
+retention,2026-06-22 00:00:00-05:00 / 2,active_people,11.0
+retention,2026-06-29 00:00:00-05:00 / 0,active_people,1406.0
+retention,2026-06-29 00:00:00-05:00 / 1,active_people,68.0
+retention,2026-06-29 00:00:00-05:00 / 2,active_people,17.0
+retention,2026-07-06 00:00:00-05:00 / 0,active_people,1079.0
+retention,2026-07-06 00:00:00-05:00 / 1,active_people,28.0
+retention,2026-07-13 00:00:00-05:00 / 0,active_people,325.0
+retention,2026-06-15 00:00:00-05:00 / 0,cohort_size,50.0
+retention,2026-06-22 00:00:00-05:00 / 0,cohort_size,628.0
+retention,2026-06-22 00:00:00-05:00 / 1,cohort_size,628.0
+retention,2026-06-22 00:00:00-05:00 / 2,cohort_size,628.0
+retention,2026-06-29 00:00:00-05:00 / 0,cohort_size,1406.0
+retention,2026-06-29 00:00:00-05:00 / 1,cohort_size,1406.0
+retention,2026-06-29 00:00:00-05:00 / 2,cohort_size,1406.0
+retention,2026-07-06 00:00:00-05:00 / 0,cohort_size,1079.0
+retention,2026-07-06 00:00:00-05:00 / 1,cohort_size,1079.0
+retention,2026-07-13 00:00:00-05:00 / 0,cohort_size,325.0
+retention,2026-06-15 00:00:00-05:00 / 0,retention_rate,1.0
+retention,2026-06-22 00:00:00-05:00 / 0,retention_rate,1.0
+retention,2026-06-22 00:00:00-05:00 / 1,retention_rate,0.059
+retention,2026-06-22 00:00:00-05:00 / 2,retention_rate,0.018
+retention,2026-06-29 00:00:00-05:00 / 0,retention_rate,1.0
+retention,2026-06-29 00:00:00-05:00 / 1,retention_rate,0.048
+retention,2026-06-29 00:00:00-05:00 / 2,retention_rate,0.012
+retention,2026-07-06 00:00:00-05:00 / 0,retention_rate,1.0
+retention,2026-07-06 00:00:00-05:00 / 1,retention_rate,0.026
+retention,2026-07-13 00:00:00-05:00 / 0,retention_rate,1.0
+funnel_summary,acquired,people,3488.0
+funnel_summary,signed_up,people,116.0
+funnel_summary,engaged (2+ sessions),people,821.0
+funnel_summary,retained (active in 2+ distinct weeks),people,154.0
+funnel_summary,acquired,pct_of_acquired,1.0
+funnel_summary,signed_up,pct_of_acquired,0.033
+funnel_summary,engaged (2+ sessions),pct_of_acquired,0.235
+funnel_summary,retained (active in 2+ distinct weeks),pct_of_acquired,0.044

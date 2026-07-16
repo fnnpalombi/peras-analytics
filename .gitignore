@@ -1,0 +1,29 @@
+# --- SECRETS: never commit ---
+.env
+*.key
+
+# --- RAW / PII DATA: never commit ---
+# Everything under data/raw is the private tier. Only data/aggregated
+# (cleared, anonymized) is ever eligible to be committed.
+data/raw/
+*.parquet
+*.csv
+!data/aggregated/*.csv
+!data/aggregated/*.parquet
+
+# --- Notebook cruft ---
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

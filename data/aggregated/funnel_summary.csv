@@ -1,0 +1,5 @@
+stage,people,pct_of_acquired
+acquired,3488,1.0
+signed_up,116,0.033
+engaged (2+ sessions),821,0.235
+retained (active in 2+ distinct weeks),154,0.044

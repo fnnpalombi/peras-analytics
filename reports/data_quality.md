@@ -7,21 +7,21 @@ data or business figures below._
 
 | Stage | Rows | Removed |
 |---|---:|---:|
-| Raw extract | 111,464 | -- |
-| After dedup | 110,404 | 1,060 (0.95%) |
-| After bot/non-prod filtering | 101,224 | 9,180 (8.31%) |
+| Raw extract | 114,377 | -- |
+| After dedup | 113,304 | 1,073 (0.94%) |
+| After bot/non-prod filtering | 103,992 | 9,312 (8.22%) |
 
 ## Traffic filtering breakdown
 
-- Non-production rows removed: 20 (0.02%)
-- Bot/AI-agent/automation rows removed: 9,180 (8.31%)
-- is_bot / traffic_type disagreement: 8,826 rows
+- Non-production rows removed: 21 (0.02%)
+- Bot/AI-agent/automation rows removed: 9,312 (8.22%)
+- is_bot / traffic_type disagreement: 8,958 rows
 
 ## Sessions
 
-- Rows with a session_id: 101,224 (100.00%)
+- Rows with a session_id: 103,992 (100.00%)
 - Rows with no session context (server-side events): 0
-- Total sessions: 5,033
+- Total sessions: 5,171
 - Median events/session: 12.0
 - Median session duration: 6s
 

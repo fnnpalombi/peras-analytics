@@ -9,19 +9,24 @@ data or business figures below._
 |---|---:|---:|
 | Raw extract | 114,377 | -- |
 | After dedup | 113,304 | 1,073 (0.94%) |
-| After bot/non-prod filtering | 103,992 | 9,312 (8.22%) |
+| After non-prod filtering (bot filter disabled) | 113,283 | 21 (0.02%) |
 
 ## Traffic filtering breakdown
 
 - Non-production rows removed: 21 (0.02%)
-- Bot/AI-agent/automation rows removed: 9,312 (8.22%)
+- **Bot/automation filtering is DISABLED** -- PostHog's $virt_is_bot/$virt_traffic_type
+  properties were found to mislabel real server-emitted events (e.g. every
+  generation.completed event in this project's history) as automation, purely
+  because they lack a browser user-agent. 9,312 rows
+  (8.22%) would have been removed if the filter were still
+  active -- none actually were. Re-enable once Peras clarifies what's going on.
 - is_bot / traffic_type disagreement: 8,958 rows
 
 ## Sessions
 
-- Rows with a session_id: 103,992 (100.00%)
-- Rows with no session context (server-side events): 0
-- Total sessions: 5,171
+- Rows with a session_id: 104,350 (92.11%)
+- Rows with no session context (server-side events): 8,933
+- Total sessions: 5,198
 - Median events/session: 12.0
 - Median session duration: 6s
 
